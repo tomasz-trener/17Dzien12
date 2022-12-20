@@ -20,7 +20,10 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
         public string City
 		{
 			get { return city; }
-			set { city = value; }
+			set { 
+				city = value;
+                OnPropertyChange("City");
+            }
 		}
 
 		public ObservableCollection<CityVM> Cities { get; set; }

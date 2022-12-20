@@ -16,11 +16,21 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels.Commands
             this.VM = VM;
         }
 
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested += value; }
+        }
 
         public bool CanExecute(object? parameter)
         {
-            return true;
+            string cityName = (string)parameter;
+
+            if (string.IsNullOrEmpty(cityName))
+                return false;
+            else
+                return true;
+
             //throw new NotImplementedException();
         }
 

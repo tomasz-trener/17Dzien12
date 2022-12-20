@@ -12,5 +12,7 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
         public bool HasPrecipitation { get; set; }
 
         public double TemperatureValue { get; set; }
+
+        public string TemperatureValueString { get { return TemperatureValue.ToString(); } }
     }
 }

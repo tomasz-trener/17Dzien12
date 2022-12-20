@@ -11,6 +11,7 @@
     <Window.Resources>
         <vm:WeatherVM x:Key="vmData"></vm:WeatherVM>
     </Window.Resources>
+
     
     
     <DockPanel DataContext="{StaticResource vmData}">
@@ -18,7 +19,39 @@
             <Label Content="Podaj miasto"></Label>
             <TextBox x:Name="txtCity" Text="{Binding City}"></TextBox>
             <Button x:Name="btnSearch" Command="{Binding SearchCommand}" CommandParameter="{Binding City}" Content="Szukaj"></Button>
-            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
+            <!--<ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>-->
+            <ListView ItemsSource="{Binding Cities}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Nazwa miasta"></Label>
+                            <Label Grid.Column="1" Content="{Binding CityName}"></Label>
+                            <Label Grid.Row="1"  Grid.Column="0" Content="Key"></Label>
+                            <Label Grid.Row="1"  Grid.Column="1" Content="{Binding Key}"></Label>
+                            <Label Grid.Row="2"  Grid.Column="0" Content="Country"></Label>
+                            <Label Grid.Row="2"  Grid.Column="1" Content="{Binding Country}"></Label>
+                        </Grid>
+                     
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            
+            
+            
+            
+            
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
             <Label HorizontalAlignment="Center" Content="Temperatura dla miasta"></Label>

@@ -20,7 +20,7 @@ namespace P03AplikacjaPogodaClientAPI.Tools
 
         private const string default_languge = "pl";
 
-        private const string api_key = "";
+        private const string api_key = "yXTan088mLTV34Og2cyAIh3clhrg8jwY";
 
         /// <summary>
         /// Downloads locations based on locatin name 

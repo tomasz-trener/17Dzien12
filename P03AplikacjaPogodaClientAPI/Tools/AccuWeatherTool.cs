@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using P01AplikacjaPogodaClientAPI.Models.CityModel;
-using P01AplikacjaPogodaClientAPI.Models.TemperatureModel;
+using P03AplikacjaPogodaClientAPI.Models.CityModel;
+using P03AplikacjaPogodaClientAPI.Models.TemperatureModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P01AplikacjaPogodaClientAPI.Tools
+namespace P03AplikacjaPogodaClientAPI.Tools
 {
     public class AccuWeatherTool
     {
@@ -20,7 +20,7 @@ namespace P01AplikacjaPogodaClientAPI.Tools
 
         private const string default_languge = "pl";
 
-        private const string api_key = " ";
+        private const string api_key = "";
 
         /// <summary>
         /// Downloads locations based on locatin name 

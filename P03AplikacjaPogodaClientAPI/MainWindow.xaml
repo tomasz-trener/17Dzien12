@@ -1,0 +1,45 @@
+﻿<Window x:Class="P03AplikacjaPogodaClientAPI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P03AplikacjaPogodaClientAPI"
+        mc:Ignorable="d"    
+        xmlns:vm="clr-namespace:P03AplikacjaPogodaClientAPI.ViewModels"
+        Title="MainWindow" Height="350" Width="500">
+
+    <Window.Resources>
+        <vm:WeatherVM x:Key="vmData"></vm:WeatherVM>
+    </Window.Resources>
+    
+    
+    <DockPanel DataContext="{StaticResource vmData}">
+        <StackPanel DockPanel.Dock="Left" Width="300">
+            <Label Content="Podaj miasto"></Label>
+            <TextBox x:Name="txtCity" Text="{Binding City}"></TextBox>
+            <Button x:Name="btnSearch" Command="{Binding SearchCommand}" CommandParameter="{Binding City}" Content="Szukaj"></Button>
+            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Left">
+            <Label HorizontalAlignment="Center" Content="Temperatura dla miasta"></Label>
+            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="xxxxxx"></Label>
+            <Label HorizontalAlignment="Center" Content="wynosi:"></Label>
+            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="0"></Label>
+        </StackPanel>
+    </DockPanel>
+
+    <!--<StackPanel Orientation="Horizontal">
+        <StackPanel  Width="300">
+            <Label Content="Podaj miasto"></Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Szukaj"></Button>
+            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
+        </StackPanel>
+        <StackPanel  >
+            <Label Content="xxxxxx"></Label>
+        </StackPanel>
+    </StackPanel>-->
+
+
+
+</Window>

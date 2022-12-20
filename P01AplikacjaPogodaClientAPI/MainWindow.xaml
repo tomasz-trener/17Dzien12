@@ -5,11 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P01AplikacjaPogodaClientAPI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <Label Content="Podaj miasto"></Label>
-        <TextBox x:Name="txtCity"></TextBox>
-        <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Szukaj"></Button>
-        <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
-    </StackPanel>
+        Title="MainWindow" Height="350" Width="500">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Width="300">
+            <Label Content="Podaj miasto"></Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Szukaj"></Button>
+            <ListBox SelectionChanged="lbData_SelectionChanged" x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Left">
+            <Label HorizontalAlignment="Center" Content="Temperatura dla miasta"></Label>
+            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="xxxxxx"></Label>
+            <Label HorizontalAlignment="Center" Content="wynosi:"></Label>
+            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="0"></Label>
+        </StackPanel>
+    </DockPanel>
+
+    <!--<StackPanel Orientation="Horizontal">
+        <StackPanel  Width="300">
+            <Label Content="Podaj miasto"></Label>
+            <TextBox x:Name="txtCity"></TextBox>
+            <Button x:Name="btnSearch" Click="btnSearch_Click" Content="Szukaj"></Button>
+            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>
+        </StackPanel>
+        <StackPanel  >
+            <Label Content="xxxxxx"></Label>
+        </StackPanel>
+    </StackPanel>-->
+
+
+
 </Window>

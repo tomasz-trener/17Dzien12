@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P01AplikacjaPogodaClientAPI.Models
+namespace P01AplikacjaPogodaClientAPI.Models.CityModel
 {
     public class Country
     {

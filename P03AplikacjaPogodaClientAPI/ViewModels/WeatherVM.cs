@@ -22,7 +22,28 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 			set { city = value; }
 		}
 
-		public ObservableCollection<CityVM> Cities { get; set; } 
+		public ObservableCollection<CityVM> Cities { get; set; }
+
+		private CityVM selectedCity;
+
+		public CityVM SelectedCity
+        {
+			get { return selectedCity; }
+			set 
+			{ 
+				selectedCity = value;
+				GetCurrentWeather(selectedCity);
+			}
+		}
+
+		private CurrentConditionsOfCity currentConditionsOfCity;
+
+		public CurrentConditionsOfCity CurrentConditionsOfCity
+        {
+			get { return currentConditionsOfCity; }
+			set { currentConditionsOfCity = value; }
+		}
+
 
 
 		public WeatherVM()
@@ -49,6 +70,19 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 					}
 					);
 			// tutaj np będzie dodwalnie się do repozytorium bazodanowego 
+        }
+
+		public async void GetCurrentWeather(CityVM city)
+		{
+			var weather=  await accuWeatherTool.GetCurrentConditions(city.Key);
+
+			CurrentConditionsOfCity = new CurrentConditionsOfCity()
+			{
+				WeatherText = weather.WeatherText,
+				TemperatureValue = weather.Temperature.Metric.Value,
+				HasPrecipitation = weather.HasPrecipitation,
+			};
+
         }
 
     }

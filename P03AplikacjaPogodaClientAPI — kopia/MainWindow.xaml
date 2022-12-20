@@ -6,12 +6,10 @@
         xmlns:local="clr-namespace:P03AplikacjaPogodaClientAPI"
         mc:Ignorable="d"    
         xmlns:vm="clr-namespace:P03AplikacjaPogodaClientAPI.ViewModels"
-        xmlns:converters="clr-namespace:P03AplikacjaPogodaClientAPI.ViewModels.Converters"
         Title="MainWindow" Height="350" Width="500">
 
     <Window.Resources>
         <vm:WeatherVM x:Key="vmData"></vm:WeatherVM>
-        <converters:BoolToImageConverter x:Key="boolToImage"/>
     </Window.Resources>
 
     
@@ -19,7 +17,7 @@
     <DockPanel DataContext="{StaticResource vmData}">
         <StackPanel DockPanel.Dock="Left" Width="300">
             <Label Content="Podaj miasto"></Label>
-            <TextBox x:Name="txtCity" Text="{Binding City}"></TextBox>
+            <TextBox x:Name="txtCity" Text="{Binding City , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Button x:Name="btnSearch" Command="{Binding SearchCommand}" CommandParameter="{Binding City}" Content="Szukaj"></Button>
             <!--<ListBox x:Name="lbData" DisplayMemberPath="LocalizedName"></ListBox>-->
 
@@ -74,12 +72,8 @@
             <Label Grid.Row="1" HorizontalAlignment="Center" Content="wynosi:"></Label>
             <Label Grid.Row="1" Grid.Column="1" x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="{Binding CurrentConditionsOfCity.TemperatureValue}"></Label>
             <Label Grid.Row="3" HorizontalAlignment="Center" Content="{Binding CurrentConditionsOfCity.WeatherText}"></Label>
+            <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" Content="{Binding CurrentConditionsOfCity.HasPrecipitation}"></Label>
 
-            <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                <Label HorizontalAlignment="Center" Content="{Binding CurrentConditionsOfCity.HasPrecipitation}"></Label>
-                <Image Width="20" Source="{Binding CurrentConditionsOfCity.HasPrecipitation, Converter={StaticResource boolToImage}}"></Image>
-            </StackPanel>
-            
         </Grid>
     </DockPanel>
 

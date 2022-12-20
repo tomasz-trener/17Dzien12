@@ -20,7 +20,7 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
         public string City
 		{
 			get { return city; }
-			set { city = value; }
+			set { city = value; OnPropertyChanged("City"); }
 		}
 
 		public ObservableCollection<CityVM> Cities { get; set; }
@@ -33,8 +33,8 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 			set 
 			{ 
 				selectedCity = value;
-				OnPropertyChange("SelectedCity");
-				GetCurrentWeather(selectedCity);
+               // OnPropertyChanged("SelectedCity");
+                GetCurrentWeather(selectedCity);
 			}
 		}
 
@@ -42,19 +42,17 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 
-
-		private void OnPropertyChange(string propertyName)
-		{
-            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-		public CurrentConditionsOfCity CurrentConditionsOfCity
+        public CurrentConditionsOfCity CurrentConditionsOfCity
         {
 			get { return currentConditionsOfCity; }
 			set { 
 				currentConditionsOfCity = value;
-				OnPropertyChange("CurrentConditionsOfCity");
-
+                OnPropertyChanged("CurrentConditionsOfCity");
             }
 		}
 
@@ -88,18 +86,14 @@ namespace P03AplikacjaPogodaClientAPI.ViewModels
 
 		public async void GetCurrentWeather(CityVM city)
 		{
-			if (city != null)
-			{
-                var weather = await accuWeatherTool.GetCurrentConditions(city.Key);
+			var weather=  await accuWeatherTool.GetCurrentConditions(city.Key);
 
-                CurrentConditionsOfCity = new CurrentConditionsOfCity()
-                {
-                    WeatherText = weather.WeatherText,
-                    TemperatureValue = weather.Temperature.Metric.Value,
-                    HasPrecipitation = weather.HasPrecipitation,
-                };
-            }
-			
+			CurrentConditionsOfCity = new CurrentConditionsOfCity()
+			{
+				WeatherText = weather.WeatherText,
+				TemperatureValue = weather.Temperature.Metric.Value,
+				HasPrecipitation = weather.HasPrecipitation,
+			};
 
         }
 
